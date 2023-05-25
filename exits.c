@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * _strncpy - copies a str
- * @dest: destination str to be copied
- * @src: source str
- * @n: amount of char to be copied
- * Return: concatenated str
+ **_strncpy - copy str
+ *@dest: string address
+ *@src: str source
+ *@n: characters to be copied
+ *Return: final string
  */
 
 char *_strncpy(char *dest, char *src, int n)
@@ -32,11 +32,11 @@ char *_strncpy(char *dest, char *src, int n)
 }
 
 /**
- * *_strncat - concatenates two str
- * @dest: 1st str
- * @src: 2nd str
- * @n: amount of bytes to be used
- * Return: concated str
+ **_strncat - combines strings
+ *@dest: first str
+ *@src: second str
+ *@n: bytes to be used
+ *Return: final string
  */
 
 char *_strncat(char *dest, char *src, int n)
@@ -60,10 +60,10 @@ char *_strncat(char *dest, char *src, int n)
 }
 
 /**
- * *_strchr - locates char in str
- * @s: str to be parsed
- * @c: char to look for
- * Return: pointer to memory areas
+ **_strchr - finds character in string
+ *@s: string
+ *@c: character to search
+ *Return: pointer to memory
  */
 
 char *_strchr(char *s, char c)
@@ -72,5 +72,6 @@ char *_strchr(char *s, char c)
 		if (*s == c)
 			return (s);
 	} while (*s++ != '\0');
+
 	return (NULL);
 }

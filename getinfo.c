@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * clear_info - initializes info_t struct
- * @info: struct address
+ * clear_info - info_t struct initialization
+ * @info: location of struc
  */
 
 void clear_info(info_t *info)
@@ -14,9 +14,9 @@ void clear_info(info_t *info)
 }
 
 /**
- * set_info - initializes info_t struct
- * @info: str address
- * @av: arg vector
+ * set_info - info_t struct initialization
+ * @info: location of struct
+ * @av: vector param
  */
 
 void set_info(info_t *info, char **av)
@@ -29,6 +29,7 @@ void set_info(info_t *info, char **av)
 		info->argv = strtow(info->arg, " \t");
 		if (!info->argv)
 		{
+
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
@@ -37,16 +38,18 @@ void set_info(info_t *info, char **av)
 			}
 		}
 		for (i = 0; info->argv && info->argv[i]; i++)
+			;
 		info->argc = i;
+
 		replace_alias(info);
 		replace_vars(info);
 	}
 }
 
 /**
- * free_info - frees info_struct
- * @info: struct address
- * @all: true if freeing all fields
+ * free_info -  release info_t field
+ * @info: location of struct
+ * @all: true if deallocating all fields
  */
 
 void free_info(info_t *info, int all)
@@ -65,11 +68,10 @@ void free_info(info_t *info, int all)
 		if (info->alias)
 			free_list(&(info->alias));
 		ffree(info->environ);
-		info->environ = NULL;
+			info->environ = NULL;
 		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
 		_putchar(BUF_FLUSH);
 	}
 }
-

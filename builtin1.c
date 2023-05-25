@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _myhistory - displays the history list, command by line
- * @info: Structure of potential args
- * Return: Always 0 (Success)
+ * _myhistory - Show the history
+ * @info: Structure with relevant argument
+ *  Return: 0
  */
 
 int _myhistory(info_t *info)
@@ -13,10 +13,10 @@ int _myhistory(info_t *info)
 }
 
 /**
- * unset_alias - sets alias to str
- * @info: param struct
- * @str: str alias
- * Return: Always 0 (Success)
+ * unset_alias - assigns alias to string
+ * @info: param structure
+ * @str: string
+ * Return: when true 0, on false 1
  */
 
 int unset_alias(info_t *info, char *str)
@@ -30,16 +30,16 @@ int unset_alias(info_t *info, char *str)
 	c = *p;
 	*p = 0;
 	ret = delete_node_at_index(&(info->alias),
-			get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = c;
 	return (ret);
 }
 
 /**
- * set_alias - sets alias to str
- * @info: param struct
- * @str: str alias
- * Return: Always 0 (Success)
+ * set_alias - assigns alias to string
+ * @info: param structure
+ * @str: string
+ * Return: when true 0, on false 1
  */
 
 int set_alias(info_t *info, char *str)
@@ -51,14 +51,15 @@ int set_alias(info_t *info, char *str)
 		return (1);
 	if (!*++p)
 		return (unset_alias(info, str));
+
 	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
 /**
- * print_alias - prints alias str
+ * print_alias - display string
  * @node: alias node
- * Return: Always 0 (Success)
+ * Return: when true 0, on false 1
  */
 
 int print_alias(list_t *node)
@@ -69,7 +70,7 @@ int print_alias(list_t *node)
 	{
 		p = _strchr(node->str, '=');
 		for (a = node->str; a <= p; a++)
-		_putchar(*a);
+			_putchar(*a);
 		_putchar('\'');
 		_puts(p + 1);
 		_puts("'\n");
@@ -79,9 +80,9 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - mimics alias builtin
- * @info: Structure has potential argd
- * Return: Always 0 (Success)
+ * _myalias - just like builtin
+ * @info: Structure with arguments
+ *  Return: 0
  */
 
 int _myalias(info_t *info)
@@ -108,5 +109,6 @@ int _myalias(info_t *info)
 		else
 			print_alias(node_starts_with(info->alias, info->argv[i], '='));
 	}
+
 	return (0);
 }

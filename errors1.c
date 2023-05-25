@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts str to int
- * @s: str to convert
- * Return: 0 if no numbers in str, otherwise -1
+ * _erratoi - change string to  integer
+ * @s: string
+ * Return: if no numbers 0, otherwise -1
  */
 
 int _erratoi(char *s)
@@ -29,10 +29,10 @@ int _erratoi(char *s)
 }
 
 /**
- * print_error - prints error message
- * @info: param and return struct
- * @estr: str containing specified error type
- * Return: 0 if numbers not in str, -1 otherwise
+ * print_error - create error
+ * @info: returns info
+ * @estr: has type of error
+ * Return: if no numbers 0, otherwise -1
  */
 
 void print_error(info_t *info, char *estr)
@@ -47,9 +47,10 @@ void print_error(info_t *info, char *estr)
 }
 
 /**
- *  print_d - function prints decimal
- *  @input: the input
- *  Return: number of characters printed
+ * print_d - creates integer for base 10
+ * @input: input
+ * @fd: description of file
+ * Return: characters created
  */
 
 int print_d(int input, int fd)
@@ -85,11 +86,11 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number - converter funct, clone of itoa
- * @num: number
- * @base: base
+ * convert_number - conversion function, similar to itoa
+ * @num: number to convert
+ * @base: base of conversion
  * @flags: argument flags
- * Return: string
+ * Return: converted string
  */
 
 char *convert_number(long int num, int base, int flags)
@@ -104,25 +105,26 @@ char *convert_number(long int num, int base, int flags)
 	{
 		n = -num;
 		sign = '-';
+
 	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" :
-		"0123456789ABCDEF";
+	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
-	do {
+	do	{
 		*--ptr = array[n % base];
 		n /= base;
 	} while (n != 0);
+
 	if (sign)
 		*--ptr = sign;
 	return (ptr);
 }
 
 /**
- * remove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
- * Return: Always 0 (Success)
+ * remove_comments - changes first instance of '#' with '\0'
+ * @buf: string location
+ * Return: 0
  */
 
 void remove_comments(char *buf)

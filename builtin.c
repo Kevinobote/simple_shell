@@ -1,10 +1,9 @@
 #include "shell.h"
 
 /**
- * _myexit - exit
- * @info: Structure containing args
- * Return: exits with an exit status
- * 0 if info.argv[0]!="exit"
+ * _myexit - Shell exit function
+ * @info: Structure containing relevant arguments
+ *  Return: exits with status
  */
 
 int _myexit(info_t *info)
@@ -30,9 +29,9 @@ int _myexit(info_t *info)
 }
 
 /**
- *  _mycd - Changes current directory of process
- *  @info: Structure containing args
- *  Return: Aways 0 (Succes)
+ * _mycd - Process directory change function
+ * @info: Structure with relevant arguments
+ *  Return: 0
  */
 
 int _mycd(info_t *info)
@@ -47,7 +46,7 @@ int _mycd(info_t *info)
 	{
 		dir = _getenv(info, "HOME=");
 		if (!dir)
-			chdir_ret =
+			chdir_ret = /* TODO: what should this be? */
 				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
@@ -61,7 +60,7 @@ int _mycd(info_t *info)
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-		chdir_ret =
+		chdir_ret = /* TODO: what should this be? */
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
@@ -80,9 +79,9 @@ int _mycd(info_t *info)
 }
 
 /**
- *  _myhelp - Changes current directory
- *  @info: Structure containing potential args
- *  Return: Always 0 (Success)
+ * _myhelp - Process help function
+ * @info: Structure with relevant arguments
+ *  Return: 0
  */
 
 int _myhelp(info_t *info)
